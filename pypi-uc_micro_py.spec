@@ -4,7 +4,7 @@
 #
 Name     : pypi-uc_micro_py
 Version  : 1.0.1
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/8d/01/865815288cb9b2cd2e7181bbe17fe55e4e3d30f29f28efcef2be4247e6a0/uc-micro-py-1.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/8d/01/865815288cb9b2cd2e7181bbe17fe55e4e3d30f29f28efcef2be4247e6a0/uc-micro-py-1.0.1.tar.gz
 Summary  : Micro subset of unicode data files for linkify-it-py projects.
