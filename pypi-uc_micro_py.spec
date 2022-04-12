@@ -4,12 +4,13 @@
 #
 Name     : pypi-uc_micro_py
 Version  : 1.0.1
-Release  : 2
+Release  : 3
 URL      : https://files.pythonhosted.org/packages/8d/01/865815288cb9b2cd2e7181bbe17fe55e4e3d30f29f28efcef2be4247e6a0/uc-micro-py-1.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/8d/01/865815288cb9b2cd2e7181bbe17fe55e4e3d30f29f28efcef2be4247e6a0/uc-micro-py-1.0.1.tar.gz
 Summary  : Micro subset of unicode data files for linkify-it-py projects.
 Group    : Development/Tools
 License  : MIT
+Requires: pypi-uc_micro_py-license = %{version}-%{release}
 Requires: pypi-uc_micro_py-python = %{version}-%{release}
 Requires: pypi-uc_micro_py-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -19,6 +20,14 @@ BuildRequires : buildreq-distutils3
 [![pypi](https://img.shields.io/pypi/v/uc-micro-py)](https://pypi.org/project/uc-micro-py/)
 [![CI](https://github.com/tsutsu3/uc.micro-py/workflows/CI/badge.svg?branch=main)](https://github.com/tsutsu3/uc.micro-py/actions)
 [![codecov](https://codecov.io/gh/tsutsu3/uc.micro-py/branch/main/graph/badge.svg?token=5Y7559D69U)](https://codecov.io/gh/tsutsu3/uc.micro-py)
+
+%package license
+Summary: license components for the pypi-uc_micro_py package.
+Group: Default
+
+%description license
+license components for the pypi-uc_micro_py package.
+
 
 %package python
 Summary: python components for the pypi-uc_micro_py package.
@@ -48,7 +57,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1639061896
+export SOURCE_DATE_EPOCH=1649790404
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -63,6 +72,8 @@ python3 setup.py build
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-uc_micro_py
+cp %{_builddir}/uc-micro-py-1.0.1/LICENSE %{buildroot}/usr/share/package-licenses/pypi-uc_micro_py/8a4bfa3e5251fba4bf05110c8fa4df5a6abd0225
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -70,6 +81,10 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-uc_micro_py/8a4bfa3e5251fba4bf05110c8fa4df5a6abd0225
 
 %files python
 %defattr(-,root,root,-)
